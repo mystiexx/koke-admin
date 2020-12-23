@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+
+.page {
+    width: 300px;
+    height: 300px;
+}
+
+.w-box {
+    background: linear-gradient(100.39deg, #8423FF 0%, #B923FF 103.05%);
+    border-radius: 10px;
+}
+
+.w-box h2{
+    font-family: 'Poppins' ;
+    font-weight: 400;
+    color: #fff;
+    font-size: 30px;
+}
+
+.w-box h3{
+    color: #fff;
+    font-size: 40px;
+    font-family: 'Poppins';
+    font-weight: 400;
+}
+
+.m-h-text{
+    margin-top: 10%;
+}
+
+.u-box {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.03);
+}
+
+.m-box {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.03);
+}
+
+.u-box h4{
+    font-family: 'Poppins' ;
+    font-weight: 400;
+    color: #8E959B;
+}
+
+.u-box h5 {
+    color: #23E5FF;
+    font-size: 35px;
+    font-family: 'Poppins';
+}
+
+.m-box h4{
+    font-family: 'Poppins' ;
+    font-weight: 400;
+    color: #8E959B;
+}
+
+.m-box h5 {
+    color: #23E5FF;
+    font-size: 35px;
+    font-family: 'Poppins';
+}
+
+
+.v-box {
+    background: #fff;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.03);
+}
+
+.ico {
+    width: 100px;
+    height: 100px;
+    color: #fff;
+    background: #FF2365;
+    border-radius: 5px;
+}
+
+.m-ico {
+    width: 100px;
+    height: 100px;
+    color: #fff;
+    background: #23FF6E;
+    border-radius: 5px;
+}
+
+.v-box h3 {
+    font-family: 'Poppins';
+}
+
+.m-box h3 {
+    font-family: 'Poppins';
+}
+
+.line {
+    background-color:#FF2365;
+    width: 70px;
+    height: 5px;
+    border-radius: 20px;
+}
+
+.add {
+    color: #FF2365;
+    border: none;
+    background-color: rgba(142,149,155,0);
+    font-size: 18px;
+}
