@@ -23,7 +23,9 @@ class Dashboard extends Component {
         return (
             <div>
                 {loading ? (
-                    <Spinner animation="border" role="status" aria-hidden="true" />
+                    <div className="spin">
+                    <Spinner  animation="border" role="status" />
+                    </div>
                 ) : (
                     <Container style={{ marginTop: 88 }} f>
                         <div className="w-box p-3 mb-5">

@@ -228,7 +228,7 @@ export default function MiniDrawer(props) {
                 </Link>
 
                 <Divider />
-                <Link>
+                <Link onClick={() => setActive("Users")} to="/users">
                     <ListItem
                         button
                         key="Users"

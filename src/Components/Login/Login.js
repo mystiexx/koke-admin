@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Spinner } from "react-bootstrap";
+import { TextField } from "@material-ui/core";
 import "./Login.css";
 
 class Login extends Component {
@@ -7,7 +8,7 @@ class Login extends Component {
         super();
         this.state = {
             username: "admin",
-            password: '1234',
+            password: "1234",
             user: "",
             pass: "",
             loading: false,
@@ -42,44 +43,50 @@ class Login extends Component {
         this.setState({ loading: false });
     }
     render() {
-        const {loading, message} = this.state
+        const { loading, message } = this.state;
         return (
             <div>
                 <div className="log-box p-4" loading={loading} message={message}>
                     <h3 className="mb-3">log in</h3>
                     <Form>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter Username"
-                                onChange={this.handleUser}
-                            />
-                        </Form.Group>
+                        <TextField
+                            id="outlined-name"
+                            label="Username"
+                            className="text-input"
+                            type="text"
+                            name="name"
+                            margin="normal"
+                            onChange={this.handleUser}
+                            required
+                        />
+                        <br />
 
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Password"
-                                onChange={this.handlePass}
-                            />
-                        </Form.Group>
+                        <TextField
+                            id="outlined-name"
+                            label="Password"
+                            className="text-input"
+                            type="password"
+                            name="name"
+                            margin="normal"
+                            onChange={this.handlePass}
+                            required
+                        />
 
                         {!loading && message && <p className="text-danger">{message}</p>}
-
-                        <Button
-                            variant="primary"
-                            disabled={loading}
-                            onClick={this.login}
-                            
-                        >
-                            {loading ? (
-                                <Spinner animation="border" role="status" aria-hidden="true" />
-                            ) : (
-                                "Log in"
-                            )}
-                        </Button>
+                        <div className="d-flex justify-content-center align-items-center">
+                            <Button
+                                variant="primary"
+                                className="mt-4"
+                                disabled={loading}
+                                onClick={this.login}
+                            >
+                                {loading ? (
+                                    <Spinner animation="border" role="status" aria-hidden="true" />
+                                ) : (
+                                    "Log in"
+                                )}
+                            </Button>
+                        </div>
                     </Form>
                 </div>
             </div>

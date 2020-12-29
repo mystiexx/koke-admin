@@ -8,6 +8,8 @@ import Service from "./Components/Programs/Service.js"
 import Members from './Components/Members/Members';
 import Login from './Components/Login/Login';
 import Shop from './Components/Shop/Shop'
+import Details from './Components/Members/Details';
+import Users from './Components/Users/Users';
 
 
 class App extends Component {
@@ -48,6 +50,8 @@ class App extends Component {
                     <Route exact path="/about" component={About}/>
                     <Route exact path="/service" component={Service}/>
                     <Route exact path="/members" component={Members}/>
+                    <Route exact path="/members/information/:id" component={Details}/>
+                    <Route exact path="/users" component={Users}/>
                     <Route exact path="/shop" component={Shop}/>
                     </div>
                     </Header>

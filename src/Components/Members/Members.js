@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import members from "./content.js";
 import User from "../../resources/male.jpg";
 import "./Members.css";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
+import {Link} from "react-router-dom";
 
 class Members extends Component {
     constructor() {
@@ -21,7 +21,13 @@ class Members extends Component {
             <div>
                 <Container style={{ marginTop: 88 }}>
                     <h2>2 members</h2>
-                    <Breadcrumbs aria-label="breadcrumb" className="mb-2">
+                    <div className="d-flex justify-content-between">
+                        <Form>
+                            <Form.Group>
+                                <Form.Control type="text" placeholder="Search..."/>
+                            </Form.Group>
+                        </Form>
+                        <Breadcrumbs aria-label="breadcrumb" className="mb-2">
                         <Link color="inherit" href="/members">
                             Members
                         </Link>
@@ -29,8 +35,11 @@ class Members extends Component {
                             information
                         </Link>
                     </Breadcrumbs>
+                    </div>
+                   
                     {content.map((data, index) => (
                         <div>
+                            <Link to={`/members/information/${index}`} className="m-link">
                             <div className="members p-2 mb-3" key={index}>
                                 <div className="d-flex flex-row ">
                                     <img src={User} alt="member" className="mt-2" />
@@ -46,6 +55,7 @@ class Members extends Component {
                                     <h4 className="mt-4 ml-1">Delete</h4>
                                 </div>
                             </div>
+                            </Link>
                         </div>
                     ))}
                 </Container>
