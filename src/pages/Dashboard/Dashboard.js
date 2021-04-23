@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import "./Dashboard.css";
 import Mission from "./Mission.js";
@@ -6,28 +6,45 @@ import Vision from "./Vision.js";
 import { FaUserAstronaut } from "react-icons/fa";
 import { TiGroup } from "react-icons/ti";
 import Page from "../../resources/landin.svg";
+import { getAdmins } from "../../services/admins";
+import {getUsers} from '../../services/member'
 
-class Dashboard extends Component {
-    constructor() {
-        super();
-        this.state = {
-            loading: true,
-        };
+function Dashboard() {
+    const [ loading, setLoading ] = useState(true)
+    const [ members, setMembers ] = useState([])
+    const [ user, setUser ] = useState([])
+
+    const getMembers = async () => {
+        try {
+            let { data } = await getUsers();
+            setMembers(data.members)
+        } catch(err){
+
+        }
     }
 
-    componentDidMount(){
-        this.setState({ loading: false})
+    const getUser = async () => {
+        try {
+            let { data } = await getAdmins();
+            setUser(data.admins)
+        } catch(err){
+
+        }
     }
-    render() {
-        const { loading } = this.state;
-        return (
-            <div>
-                {loading ? (
+
+    useEffect(() => {
+       setLoading(false)
+       getMembers();
+       getUser()
+    }, [])
+    return (
+        <div>
+     {loading ? (
                     <div className="spin">
                     <Spinner  animation="border" role="status" />
                     </div>
                 ) : (
-                    <Container style={{ marginTop: 88 }} f>
+                    <Container>
                         <div className="w-box p-3 mb-5">
                             <div className="d-flex justify-content-between">
                                 <div className="m-h-text">
@@ -48,7 +65,7 @@ class Dashboard extends Component {
                                         </Col>
                                         <Col md={9}>
                                             <h4 className="mt-3">Users</h4>
-                                            <h5>0</h5>
+                                            <h5>{user.length}</h5>
                                         </Col>
                                     </Row>
                                 </div>
@@ -63,7 +80,7 @@ class Dashboard extends Component {
 
                                         <Col md={9}>
                                             <h4 className="mt-3"> Members</h4>
-                                            <h5>0</h5>
+                                            <h5>{members.length}</h5>
                                         </Col>
                                     </Row>
                                 </div>
@@ -85,9 +102,9 @@ class Dashboard extends Component {
                         </Row>
                     </Container>
                 )}
-            </div>
-        );
-    }
+        </div>
+    )
 }
 
-export default Dashboard;
+
+export default Dashboard

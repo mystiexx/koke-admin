@@ -15,7 +15,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { MdPowerSettingsNew } from 'react-icons/md'
-import { FaHome, FaServicestack, FaShoppingBag, FaUserAstronaut } from "react-icons/fa";
+import { FaHome, FaServicestack, FaShoppingBag, FaUserAstronaut, FaTruck } from "react-icons/fa";
 import { SiAboutDotMe } from 'react-icons/si'
 import {TiGroup} from 'react-icons/ti'
 import { Link } from "react-router-dom";
@@ -209,6 +209,21 @@ export default function MiniDrawer(props) {
                             <FaShoppingBag style={{ fontSize: "20px" }} />
                         </ListItemIcon>
                         <ListItemText primary="Shop" />
+                    </ListItem>
+                </Link>
+
+                <Divider />
+                <Link onClick={() => setActive("Order")} to ="/orders">
+                    <ListItem
+                        button
+                        key="Order"
+                        style={{ marginTop: "20px" }}
+                        className={active === "Order" ? classes.active : ""}
+                    >
+                        <ListItemIcon>
+                            <FaTruck style={{ fontSize: "20px" }} />
+                        </ListItemIcon>
+                        <ListItemText primary="Orders" />
                     </ListItem>
                 </Link>
 
