@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserForm from './UserForm';
-import { Button, useDisclosure, Input, Spinner, useToast } from '@chakra-ui/react';
+import { Button, useDisclosure, Input, Spinner, useToast, IconButton } from '@chakra-ui/react';
 import { getAdmins, removeAdmin } from '../../services/admins';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,8 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import { FaEdit } from 'react-icons/fa';
-import { MdDelete } from 'react-icons/md';
 import EditUser from './EditUser'
+import { RiDeleteBin2Line } from 'react-icons/ri';
 
 function Users() {
 	const toast = useToast();
@@ -44,7 +44,7 @@ function Users() {
 			if (data) {
 				toast({
 					title: 'Deleted.',
-					description: data.message,
+					description: 'User has been deleted',
 					status: 'success',
 					duration: 9000,
 					isClosable: true,
@@ -248,22 +248,27 @@ function Users() {
 													{row.superAdmin.toString()}
 												</TableCell>
 												<TableCell>
-													<Button
-														leftIcon={<FaEdit />}
-														style={{ background: 'none' }}
-														onClick={() => openModal(row)}
-													>
-														Edit
-													</Button>
+												<IconButton
+															onClick={() => openModal(row)}
+															isLoading={loading}
+															colorScheme="orange"
+															icon={
+																<FaEdit style={{ fontSize: 20 }}/>
+																
+															}
+														/>
 												</TableCell>
 												<TableCell>
-													<Button
-														leftIcon={<MdDelete />}
-														style={{ background: 'none' }}
-														onClick={() => deleteAdmin(row._id)}
-													>
-														Delete
-													</Button>
+												<IconButton
+															onClick={() => deleteAdmin(row._id)}
+															isLoading={loading}
+															colorScheme="red"
+															icon={
+																<RiDeleteBin2Line
+																	style={{ fontSize: 20 }}
+																/>
+															}
+														/>
 												</TableCell>
 											</TableRow>
 										))}

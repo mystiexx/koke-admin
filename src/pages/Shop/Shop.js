@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Shop.css';
-import { Button, useDisclosure, Spinner } from '@chakra-ui/react';
-import { getProducts } from '../../services/shop';
+import { Button, useDisclosure, Spinner, IconButton, useToast } from '@chakra-ui/react';
+import { getProducts, removeProduct } from '../../services/shop';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,8 +11,10 @@ import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import ShopForm from './ShopForm';
 import moment from 'moment';
+import {RiDeleteBin2Line} from 'react-icons/ri'
 
 function Shop() {
+	const toast = useToast()
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [ product, setProduct ] = useState([]);
 	const [ loading, setLoading ] = useState(true);
@@ -22,7 +24,6 @@ function Shop() {
 	const Products = async () => {
 		try {
 			let { data } = await getProducts();
-            console.log(data.products)
 			setProduct(data.products);
 			setLoading(false);
 		} catch (err) {}
@@ -35,6 +36,34 @@ function Shop() {
 	const handleChangeRowsPerPage = (event) => {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
+	};
+
+	const deleteProduct = async (id) => {
+		setLoading(false);
+		try {
+			let { data } = await removeProduct(id);
+			if (data) {
+				toast({
+					title: 'Deleted.',
+					description: 'Product has been deleted',
+					status: 'success',
+					duration: 9000,
+					isClosable: true,
+					position: 'top-right'
+				});
+				let { data: obj } = await getProducts();
+				setProduct(obj.products);
+			}
+		} catch (err) {
+			toast({
+				title: 'Error.',
+				description: 'Something went wrong',
+				status: 'error',
+				duration: 9000,
+				isClosable: true,
+				position: 'top-right'
+			});
+		}
 	};
 
 	useEffect(() => {
@@ -195,6 +224,18 @@ function Shop() {
 												>
 													{moment(row.createdAt).format('MMM Do YY')}
 												</TableCell>
+												<TableCell align="left">
+														<IconButton
+															onClick={() => deleteProduct(row._id)}
+															isLoading={loading}
+															colorScheme="red"
+															icon={
+																<RiDeleteBin2Line
+																	style={{ fontSize: 20 }}
+																/>
+															}
+														/>
+													</TableCell>
 											</TableRow>
 										))}
 								</TableBody>

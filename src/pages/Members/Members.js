@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Members.css';
-import { Input, Button, Spinner, useToast } from '@chakra-ui/react';
+import { Input, Button, Spinner, useToast, IconButton } from '@chakra-ui/react';
 import { getUsers } from '../../services/member';
+import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,9 +14,17 @@ import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import moment from 'moment';
 import { removeMember } from '../../services/member';
+import { RiDeleteBin2Line } from 'react-icons/ri';
+
+const useStyles = makeStyles({
+	table: {
+		minWidth: 650
+	}
+})
 
 function Members() {
 	const toast = useToast();
+	const classes = useStyles()
 	const [ user, setUser ] = useState([]);
 	const [ loading, setLoading ] = useState(true);
 	const [ page, setPage ] = useState(0);
@@ -38,7 +47,7 @@ function Members() {
 			if (data) {
 				toast({
 					title: 'Deleted.',
-					description: data.message,
+					description: 'Member was deleted',
 					status: 'success',
 					duration: 9000,
 					isClosable: true,
@@ -103,7 +112,7 @@ function Members() {
 
 					<div style={{ background: '#fff', borderRadius: '8px' }} className="p-4">
 						<TableContainer>
-							<Table aria-label="simple table" size="small">
+							<Table className={classes.table} aria-label="a dense table" size="small">
 								<TableHead>
 									<TableRow>
 										<TableCell
@@ -252,14 +261,17 @@ function Members() {
 													</Button>
 												</TableCell>
 												<TableCell>
-													<Button
-														leftIcon={<MdDelete />}
-														onClick={() => deleteMember(row._id)}
-														isLoading={loading}
-														style={{ background: 'none' }}
-													>
-														Delete
-													</Button>
+												<IconButton
+												onClick={() => deleteMember(row._id)}
+												isLoading={loading}
+                                                colorScheme="red"
+													icon={
+														<RiDeleteBin2Line
+															style={{ fontSize: 20 }}
+														/>
+													}
+												/>
+												
 												</TableCell>
 											</TableRow>
 										))}
