@@ -118,7 +118,7 @@ const SideBarContent = (props) => {
     <>
       <aside>
         {pages.map((page) => {
-          const { text, icon, submenu } = page;
+          const { text,  submenu } = page;
           return submenu === undefined ? (
             <MenuItem
               isActive={currentLocation.includes(page.to)}

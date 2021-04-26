@@ -11,7 +11,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import { FaEdit } from 'react-icons/fa';
-import { MdDelete } from 'react-icons/md';
 import moment from 'moment';
 import { removeMember } from '../../services/member';
 import { RiDeleteBin2Line } from 'react-icons/ri';
